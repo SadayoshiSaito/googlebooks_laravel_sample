@@ -171,11 +171,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        GoogleBooksSample\Providers\AppServiceProvider::class,
+        GoogleBooksSample\Providers\AuthServiceProvider::class,
+        // GoogleBooksSample\Providers\BroadcastServiceProvider::class,
+        GoogleBooksSample\Providers\EventServiceProvider::class,
+        GoogleBooksSample\Providers\RouteServiceProvider::class,
 
     ],
 
