@@ -16,12 +16,16 @@
             <p>検索語：{{ $keyword }}</p>
             <hr>
             @foreach ($items as $item)
-                <img src="{{ $item['volumeInfo']['imageLinks']['thumbnail']}}"><br>
+                @if (array_key_exists('imageLinks', $item['volumeInfo']))
+                    <img src="{{ $item['volumeInfo']['imageLinks']['thumbnail']}}"><br>
+                @endif
                 タイトル：{{ $item['volumeInfo']['title']}}<br>
                 著者：{{ $item['volumeInfo']['authors'][0]}}<br>
                 発売年月：{{ $item['volumeInfo']['publishedDate']}}<br>
                 <br>
-                概要：{{ $item['volumeInfo']['description']}}<br>
+                @if (array_key_exists('description', $item['volumeInfo']))
+                    概要：{{ $item['volumeInfo']['description']}}<br>
+                @endif
                 <hr>
             @endforeach
         @endif

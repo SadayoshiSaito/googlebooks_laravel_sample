@@ -26,16 +26,16 @@ class BooksController extends Controller
             $title = urlencode($request->keyword);
 
             // APIを発行するURLを生成
-            $url = 'https://www.googleapis.com/books/v1/volumes?q=' . $title . '&country=JP&orderBy=newest&tbm=bks';
+            $url = 'https://www.googleapis.com/books/v1/volumes?q=' . $title . '&country=JP&tbm=bks';
     
             $client = new Client();
 
-            // GETでリクエスト
+            // GETでリクエスト実行
             $response = $client->request("GET", $url);
     
             $body = $response->getBody();
             
-            // JSON形式を連想配列にデコード
+            // レスポンスのJSON形式を連想配列に変換
             $bodyArray = json_decode($body, true);
     
             // 書籍情報部分を取得
