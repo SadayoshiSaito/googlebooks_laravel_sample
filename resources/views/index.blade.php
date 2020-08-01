@@ -13,19 +13,29 @@
         @if ($items == null)
             <p>書籍名を入力してください。</p>
         @else (count($items) > 0)
-            <p>検索語：{{ $keyword }}</p>
+            <p>「{{ $keyword }}」の検索結果</p>
             <hr>
             @foreach ($items as $item)
+            <h2>{{ $item['volumeInfo']['title']}}</h2>
                 @if (array_key_exists('imageLinks', $item['volumeInfo']))
                     <img src="{{ $item['volumeInfo']['imageLinks']['thumbnail']}}"><br>
                 @endif
-                タイトル：{{ $item['volumeInfo']['title']}}<br>
-                著者：{{ $item['volumeInfo']['authors'][0]}}<br>
-                発売年月：{{ $item['volumeInfo']['publishedDate']}}<br>
+                                
+                @if (array_key_exists('description', $item['volumeInfo']))
+                    著者：{{ $item['volumeInfo']['authors'][0]}}<br>
+                @endif
+                @if (array_key_exists('description', $item['volumeInfo']))
+                    発売年月：{{ $item['volumeInfo']['publishedDate']}}<br>
+                @endif
+                <br>
+                @foreach ($item['volumeInfo']['industryIdentifiers'] as $industryIdentifier)
+                    {{ $industryIdentifier['type'] }}&nbsp;：&nbsp;{{ $industryIdentifier['identifier'] }} <br>
+                @endforeach
                 <br>
                 @if (array_key_exists('description', $item['volumeInfo']))
                     概要：{{ $item['volumeInfo']['description']}}<br>
                 @endif
+                <br>
                 <hr>
             @endforeach
         @endif

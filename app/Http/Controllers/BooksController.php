@@ -40,6 +40,9 @@ class BooksController extends Controller
     
             // 書籍情報部分を取得
             $items = $bodyArray['items'];
+
+            // レスポンスの中身を見る
+            //dd($items);
         }
 
         $data = [
